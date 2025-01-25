@@ -1,7 +1,22 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <cstring>
 
-int main(){
+void log_help(std::ostream& os){
+  os<<"Give two RGB hex codes, '#' must be omited\n";
+}
+
+int main(int argc, char *argv[]){
+  if(2 == argc && 0 == strcmp(argv[1], "help")){
+    log_help(std::clog);
+    return 1;
+  }
+  if(3 != argc){
+    log_help(std::cerr<<"Not enough arguments were given\n");
+    return -1;
+  }
+  std::cout<<"Normal behaviour\n";
+  return 0;
   sf::Image img;
   int temp;
   img.loadFromFile("data/green_gecko.jpg");
