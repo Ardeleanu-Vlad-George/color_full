@@ -15,7 +15,12 @@ int main(int argc, char *argv[]){
     log_help(std::cerr<<"Not enough arguments were given\n");
     return -1;
   }
-  std::cout<<"Normal behaviour\n";
+  sf::Color start, finish;
+  int r, g, b;
+  sscanf(argv[1], "%02x%02x%02x", &r, &g, &b);
+  std::cout<<"Values of the first color\tred:"<<r<<"\tgreen:"<<g<<"\tblue:"<<b<<'\n';
+  sscanf(argv[2], "%02x%02x%02x", &r, &g, &b);
+  std::cout<<"Values of the 2nd   color\tred:"<<r<<"\tgreen:"<<g<<"\tblue:"<<b<<'\n';
   return 0;
   sf::Image img;
   int temp;
