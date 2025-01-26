@@ -2,6 +2,24 @@
 #include <SFML/Graphics.hpp>
 #include <cstring>
 
+class redgrnblu;
+
+std::ostream& operator<<(std::ostream&, redgrnblu&);
+
+class redgrnblu{ private:
+  int r, g, b;
+public:
+  redgrnblu(char *code){
+    sscanf(code, "%02x%02x%02x", &r, &g, &b);
+  }
+  friend std::ostream& operator<<(std::ostream&, redgrnblu&);
+};
+
+std::ostream& operator<<(std::ostream& os, redgrnblu& rgb){
+  return os<<'('<<rgb.r<<", "<<rgb.g<<", "<<rgb.b<<')';
+}
+
+
 void log_help(std::ostream& os){
   os<<"Give two RGB hex codes, '#' must be omited\n";
 }
@@ -15,12 +33,9 @@ int main(int argc, char *argv[]){
     log_help(std::cerr<<"Not enough arguments were given\n");
     return -1;
   }
-  sf::Color start, finish;
-  int r, g, b;
-  sscanf(argv[1], "%02x%02x%02x", &r, &g, &b);
-  std::cout<<"Values of the first color\tred:"<<r<<"\tgreen:"<<g<<"\tblue:"<<b<<'\n';
-  sscanf(argv[2], "%02x%02x%02x", &r, &g, &b);
-  std::cout<<"Values of the 2nd   color\tred:"<<r<<"\tgreen:"<<g<<"\tblue:"<<b<<'\n';
+  redgrnblu source(argv[1]), target(argv[2]);
+  std::cout<<"1st color:"<<source<<'\n';
+  std::cout<<"2nd color:"<<target<<'\n';
   return 0;
   sf::Image img;
   int temp;
