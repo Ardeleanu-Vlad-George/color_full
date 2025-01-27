@@ -1,47 +1,6 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <cstring>
 #include "io.hpp"
-
-class redgrnblu;
-
-std::ostream& operator<<(std::ostream&, redgrnblu&);
-
-class redgrnblu{ 
-private:
-  int r, g, b;
-public:
-  redgrnblu(char *code){
-    sscanf(code, "%02x%02x%02x", &r, &g, &b);
-  }
-  operator sf::Color(){
-    return sf::Color(r, g, b);
-  }
-  friend std::ostream& operator<<(std::ostream&, redgrnblu&);
-  class diff{
-  private:
-    int dr, dg, db;
-  public:
-    diff(redgrnblu& c1, redgrnblu& c2)
-      :dr(c1.r - c2.r),dg(c1.g - c2.g),db(c1.b - c2.b)
-        {}
-    std::string to_string(){
-      char rslt[211];
-      sprintf(rslt, "[%+04d]:[%+04d]:[%+04d]", dr, dg, db);
-      return std::string(rslt);
-    }
-  };
-
-  diff operator-(redgrnblu& c){
-    return diff(*this, c);
-  }
-};
-
-std::ostream& operator<<(std::ostream& os, redgrnblu& rgb){
-  char rslt[311];
-  sprintf(rslt, "(%03d, %03d, %03d)", rgb.r, rgb.g, rgb.b);
-  return os<<rslt;
-}
+#include "redgrnblu.hpp"
+#include <cstring>
 
 int main(int argc, char *argv[]){
   if(2 == argc && 0 == strcmp(argv[1], "help")){
