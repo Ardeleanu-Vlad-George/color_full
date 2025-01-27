@@ -11,7 +11,7 @@ private:
   int r, g, b;
 public:
   redgrnblu(char *code){
-    sscanf(code, "#%02x%02x%02x", &r, &g, &b);
+    sscanf(code, "%02x%02x%02x", &r, &g, &b);
   }
   operator sf::Color(){
     return sf::Color(r, g, b);
@@ -37,11 +37,13 @@ public:
 };
 
 std::ostream& operator<<(std::ostream& os, redgrnblu& rgb){
-  return os<<'('<<rgb.r<<", "<<rgb.g<<", "<<rgb.b<<')';
+  char rslt[311];
+  sprintf(rslt, "(%03d, %03d, %03d)", rgb.r, rgb.g, rgb.b);
+  return os<<rslt;
 }
 
 void log_help(std::ostream& os){
-  os<<"Give two RGB hex codes, '#' must be included\n";
+  os<<"Give two RGB hex codes, '#' must NOT be included\n";
 }
 
 int main(int argc, char *argv[]){
