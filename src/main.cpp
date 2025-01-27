@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <cstring>
+#include "io.hpp"
 
 class redgrnblu;
 
@@ -40,10 +41,6 @@ std::ostream& operator<<(std::ostream& os, redgrnblu& rgb){
   char rslt[311];
   sprintf(rslt, "(%03d, %03d, %03d)", rgb.r, rgb.g, rgb.b);
   return os<<rslt;
-}
-
-void log_help(std::ostream& os){
-  os<<"Give two RGB hex codes, '#' must NOT be included\n";
 }
 
 int main(int argc, char *argv[]){
