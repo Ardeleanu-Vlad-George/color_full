@@ -16,5 +16,6 @@ int main(int argc, char *argv[]){
   std::cout<<"2nd color :"<<target<<'\n';
   redgrnblu::diff shift = source-target;
   std::cout<<"difference:"<<shift.to_string()<<'\n';
+  std::cout<<"modulus   :"<<shift.mod()<<'\n';
   return 0;
 }

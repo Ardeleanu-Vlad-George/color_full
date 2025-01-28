@@ -22,6 +22,7 @@ public:
     int dr, dg, db;
   public:
     diff(redgrnblu& c1, redgrnblu& c2);
+    double mod();
     std::string to_string();
   };
 

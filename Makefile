@@ -1,6 +1,6 @@
 TRG := color_shift
 
-OBJ := obj/main.o obj/io.o obj/redgrnblu.o
+OBJ := obj/main.o obj/io.o obj/redgrnblu.o obj/redgrnblu__diff.o
 
 $(TRG) : $(OBJ)
 	g++ -o $@ $^ -lsfml-system -lsfml-graphics
